@@ -10,20 +10,22 @@ const letters = document.getElementsByClassName('box');
   });
 });
 [...letters].forEach(letter => {
-  letter.addEventListener ('mousedown', function() {
-    const audio = new Audio(); 
-    audio.src = `sounds/${letter.id}.mp3`; 
-    audio.autoplay = true;
-  })
-})
+  letter.addEventListener('mousedown', function() {
+    const audio = new Audio();
+    audio.src = `sounds/${letter.id}.mp3`;
+    audio.play();
+  });
+});
 
+document.addEventListener('keydown', event => {
+  const a = document.querySelector(`.${event.key.toUpperCase()}`);
+  a.style.border = '2px solid orange';
+  const audio = new Audio();
+  audio.src = `sounds/${a.id}.mp3`;
+  audio.play();
+});
 
-// document.addEventListener('keypress', (event) => {
-//   console.log('нажата клавиша: ' + event.key);
-// });
-// letter.addEventListener('keyup', function(event) {
-//   console.log(event.code);  
-// })
-
-
-
+document.addEventListener('keyup', event => {
+  const a = document.querySelector(`.${event.key.toUpperCase()}`);
+  a.style.border = '2px solid black';
+});
